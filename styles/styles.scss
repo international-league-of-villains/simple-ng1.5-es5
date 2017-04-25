@@ -1,0 +1,124 @@
+$font-dir:    "../assets/fonts";
+// forms (inputs & labels)
+@import "modules/forms";
+
+@mixin font-face (
+  $font-family, 
+  $font-dir, 
+  $font-name,
+  $font-weight, 
+  $font-style) {
+
+  @font-face {
+    font-family: $font-family;
+    src:  url("#{$font-dir}/#{$font-name}.woff") format("woff"),
+          url("#{$font-dir}/#{$font-name}.woff2") format("woff2");
+    font-weight: $font-weight;
+    font-style: $font-style;
+  }
+}
+
+//Font loading example...
+// 
+// @include font-face($font-family, $font-dir, "my-font-filename", 200, normal);
+
+
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  font-family: "my_font_family_name", Helvetica, Arial, sans-serif;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+  background-color: #f3f1ee;
+}
+
+header {
+  padding: 25px;
+  width: 960px;
+  width: 960px;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: white;
+}
+
+header h1 {
+  margin: 0px;
+  margin-left: 20px;
+
+}
+
+footer {
+  background: #f3f1ee;
+  padding: 0;
+  border-top: 1px solid #e0ddda;
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+footer .container-fluid {
+  max-width: 960px;
+  margin: 0 auto;
+}
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+footer ul li {
+  display: inline-block;
+  padding: 0 0 0 19px;
+  position: relative;
+}
+footer a {
+  text-decoration: none;
+  color: #5e514d;
+  font-size: .7857142857em
+}
+
+main {
+  background-color: #f3f1ee;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+section {
+  background-color: white;
+  padding: 20px 30px;
+  border-radius: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+img.shared-values {
+  width: 100%;
+}
+
+
+h1 {
+  font-weight: 600;
+}
+
+/**
+ * For the example
+ */
+
+#example {
+
+}
+
+#example article {
+  border: solid 1px #e2dfda;
+  padding: 20px 30px;
+  border-radius: 3px;
+}

@@ -6,7 +6,7 @@ var jsdom = require("node-jsdom");
 var fs = require("fs");
 
 var destDirName = 'dist';
-var githubBaseUrl = 'https://amindunited.github.io/simple-ng-1.5-es5/';
+var githubBaseUrl = './';
 
 var filePath = path.join(__dirname, '../'+destDirName+'/index.html');
 

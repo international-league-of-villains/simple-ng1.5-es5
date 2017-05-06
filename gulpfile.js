@@ -24,17 +24,18 @@ var gulp            = require('gulp'),
     del             = require('del'),
     runSequence     = require('run-sequence');
 
+const outputDir = './dist';
 
 // optimize images
 gulp.task('images', function() {
   return gulp.src('./images/**/*')
-    .pipe($.changed('./_build/images'))
+    .pipe($.changed(outputDir + '/images'))
     .pipe($.imagemin({
       optimizationLevel: 3,
       progressive: true,
       interlaced: true
     }))
-    .pipe(gulp.dest('./_build/images'));
+    .pipe(gulp.dest(outputDir + '/images'));
 });
 
 // browser-sync task, only cares about compiled CSS
@@ -48,9 +49,9 @@ gulp.task('browser-sync', function() {
 
 // minify JS
 gulp.task('minify-js', function() {
-  gulp.src('js/*.js')
+  gulp.src(['./js/*.js', './app/*.js'])
     .pipe($.uglify())
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest(outputDir + '/'));
 });
 
 // minify CSS
@@ -59,7 +60,7 @@ gulp.task('minify-css', function() {
     .pipe($.rename({suffix: '.min'}))
     .pipe($.minifyCss({keepBreaks:true}))
     .pipe(gulp.dest('./styles/'))
-    .pipe(gulp.dest('./_build/css/'));
+    .pipe(gulp.dest(outputDir + '/css/'));
 });
 
 // minify HTML
@@ -72,14 +73,14 @@ gulp.task('minify-html', function() {
 
   gulp.src('./*.html')
     .pipe($.minifyHtml(opts))
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest(outputDir + '/'));
 });
 
 // copy fonts from a module outside of our project (like Bower)
 gulp.task('fonts', function() {
   gulp.src('./fonts/**/*.{ttf,woff,eof,eot,svg}')
-    .pipe($.changed('./_build/fonts'))
-    .pipe(gulp.dest('./_build/fonts'));
+    .pipe($.changed(outputDir + '/fonts'))
+    .pipe(gulp.dest(outputDir + '/fonts'));
 });
 
 // start webserver
@@ -95,7 +96,7 @@ gulp.task('server', function(done) {
 gulp.task('server-build', function(done) {
   return browserSync({
     server: {
-      baseDir: './_build/'
+      baseDir: outputDir + '/'
     }
   }, done);
 });
@@ -103,7 +104,7 @@ gulp.task('server-build', function(done) {
 // delete build folder
 gulp.task('clean:build', function (cb) {
   del([
-    './_build/'
+    outputDir + '/'
     // if we don't want to clean any file we can use negate pattern
     //'!dist/mobile/deploy.json'
   ], cb);
@@ -113,7 +114,7 @@ gulp.task('clean:build', function (cb) {
 gulp.task('concat', function() {
   gulp.src('./js/*.js')
     .pipe($.concat('scripts.js'))
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest(outputDir + '/'));
 });
 
 // SASS task, will run when any SCSS files change & BrowserSync
@@ -192,7 +193,7 @@ gulp.task('usemin', function() {
       appcomponents: [$.uglify()],
       mainapp: [$.uglify()]
     }))
-    .pipe(gulp.dest('./_build/'));
+    .pipe(gulp.dest(outputDir + '/'));
 });
 
 // make templateCache from all HTML files
@@ -219,7 +220,7 @@ gulp.task('bs-reload', function() {
 gulp.task('build:size', function() {
   var s = $.size();
 
-  return gulp.src('./_build/**/*.*')
+  return gulp.src(outputDir + '/**/*.*')
     .pipe(s)
     .pipe($.notify({
       onLast: true,

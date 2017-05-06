@@ -1,9 +1,9 @@
-angular.module('oldNG1', []);
+angular.module('oldNG1', ['ngMaterial']);
 
 angular.module('oldNG1')
 .directive('oldSelectWrapper', [function () {
     return {
-      template: '<h3>ES5 Wrapping Component</h3><power-select first-names="$ctrl.firstNames" last-names="$ctrl.lastNames" callback="$ctrl.selection"></power-select>',
+      template: '<h3>Pick your Super Villain name (es5)</h3><power-select first-names="$ctrl.firstNames" last-names="$ctrl.lastNames" callback="$ctrl.selection"></power-select>',
       controllerAs: '$ctrl',
       controller: [function () {
         this.firstNames = [
@@ -43,16 +43,18 @@ angular.module('oldNG1')
       lastNames: '=',
       callback: '='
     },
-    template: '<article>' +
-              '<h4>Select Villan Name (ES5)</h4>' +
-              '<select ng-model="$ctrl.firstName" ng-change="$ctrl.onSelect()" data-ng-options="firstName as firstName.name for firstName in $ctrl.firstNames">' +
-                '<option value="">Pick one...</option>' +
-              '</select>' +
-              '<select ng-model="$ctrl.lastName" ng-change="$ctrl.onSelect()" data-ng-options="lastName as lastName.name for lastName in $ctrl.lastNames">' +
-                '<option value="">Pick one...</option>' +
-              '</select>' +
-              '<span ng-if="$ctrl.firstName &&  $ctrl.lastName"> You selected selected the name: {{$ctrl.firstName.name}} {{$ctrl.lastName.name}}</span>' +
-            '</article>',
+    template: '<div layout="column">'+
+              '<md-input-container>'+
+                '<md-select ng-model="$ctrl.firstName" placeholder="Select your first name">'+
+                  '<md-option ng-value="firstName" ng-repeat="firstName in $ctrl.firstNames">{{ firstName.name }}</md-option>'+
+                '</md-select>'+
+              '</md-input-container></div>'+
+              '<div layout="column">'+
+              '<md-input-container>'+
+                '<md-select ng-model="$ctrl.lastName" placeholder="Select your last name">'+
+                  '<md-option ng-value="lastName" ng-repeat="lastName in $ctrl.lastNames">{{ lastName.name }}</md-option>'+
+                '</md-select>'+
+              '</md-input-container></div>',
     controller: ['$scope', function ($scope) {
       this.onSelect = function () {
         if (this.firstName && this.lastName) {

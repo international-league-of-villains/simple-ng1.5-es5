@@ -1,9 +1,13 @@
 {
   "name": "simple-ng1.5-es5",
   "version": "1.0.0",
-  "description": "A very barebones angularjs app in ES5",
+  "description": "International League of Villains - name selection",
   "main": "app/app.js",
   "devDependencies": {
+    "angular": "^1.5.11",
+    "angular-animate": "^1.5.11",
+    "angular-aria": "^1.5.11",
+    "angular-material": "^1.1.4",
     "browser-sync": "^1.9.1",
     "connect": "^3.3.1",
     "connect-livereload": "^0.5.0",
@@ -36,6 +40,9 @@
     "watch": "^0.13.0"
   },
   "scripts": {
+    "start": "gulp",
+    "serve": "gulp",
+    "build": "gulp build",
     "postinstall": "bower install --no-interactive --allow-root"
   },
   "repository": {

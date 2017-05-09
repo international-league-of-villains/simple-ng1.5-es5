@@ -45,8 +45,7 @@
     "start": "gulp",
     "serve": "gulp",
     "build": "gulp build",
-    "gh-deploy": "node scripts/gh-deploy.js",
-    "postinstall": "bower install --no-interactive --allow-root"
+    "gh-deploy": "node scripts/gh-deploy.js"
   },
   "repository": {
     "type": "git",

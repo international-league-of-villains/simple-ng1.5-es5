@@ -1,6 +1,8 @@
+$assets_path: '../' !default;
+
 body {
   background-position: center center;
-  background-image: url(../images/dc_villains.jpg);
+  background-image: url($assets_path + 'images/dc_villains.jpg');
 }
 old-select-wrapper {
   background-color: rgba(255, 255, 255, .98);

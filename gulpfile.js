@@ -164,7 +164,7 @@ gulp.task('sass:build', function() {
       advanced: false
     }))
     .pipe($.rename({suffix: '.min'}))
-    .pipe(gulp.dest('_build/css'))
+    .pipe(gulp.dest(outputDir + '/css'))
     .pipe(s)
     .pipe($.notify({
       onLast: true,
@@ -202,13 +202,14 @@ gulp.task('templates', function() {
       './**/*.html',
       '!bower_components/**/*.*',
       '!node_modules/**/*.*',
-      '!_build/**/*.*'
+      '!_build/**/*.*',
+      '!' + outputDir + '/**/*.*'
     ])
     .pipe($.minifyHtml())
     .pipe($.angularTemplatecache({
       module: 'boilerplate'
     }))
-    .pipe(gulp.dest('_build/js'));
+    .pipe(gulp.dest(outputDir + '/js'));
 });
 
 // reload all Browsers
